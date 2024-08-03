@@ -51,7 +51,7 @@ class Truck extends Vehicle implements Driveable, AbleToTow {
   } else {
     this.wheels = wheels;
   }
-  
+  this.towingCapacity = towingCapacity;
 
   // TODO: Implement the tow method from the AbleToTow interface
   tow(vehicle: Truck | Motorbike | Car): void {
