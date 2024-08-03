@@ -54,8 +54,16 @@ class Truck extends Vehicle implements Driveable, AbleToTow {
   this.towingCapacity = towingCapacity;
 
   // TODO: Implement the tow method from the AbleToTow interface
-  tow(vehicle: Truck | Motorbike | Car): void {
-    // TODO: Get the make an model of the vehicle if it exists
+  tow(Vehicle: Truck | Motorbike | Car): void {
+    get make = Vehicle.make;
+    get model = Vehicle.model;
+    if (Vehicle.weight <= this.towingCapacity) {
+      console.log(`Vehicle ${make} ${model} is being towed`);
+      if (Vehicle.weight > this.towingCapacity) {
+        console.log(`Vehicle ${make} ${model} is too heavy to be towed`);
+      }
+    }
+    // TODO: Get the make and model of the vehicle if it exists
     // TODO: Check if the vehicle's weight is less than or equal to the truck's towing capacity
     // TODO: If it is, log that the vehicle is being towed
     // TODO: If it is not, log that the vehicle is too heavy to be towed
@@ -65,6 +73,21 @@ class Truck extends Vehicle implements Driveable, AbleToTow {
     // TODO: The method should call the printDetails method of the parent class
     // TODO: The method should log the details of the Truck
     // TODO: The details should include the VIN, make, model, year, weight, top speed, color, towing capacity, and wheels
+    override printDetails(): void {
+
+      super.printDetails();
+      
+      console.log(
+        `VIN: ${this.vin} 
+        make: ${this.make} 
+        model: ${this.model} 
+        year: ${this.year} 
+        weight: ${this.weight} 
+        top speed: ${this.topSpeed} 
+        color: ${this.color} 
+        wheels: ${this.wheels} 
+        towing capacity: ${this.towingCapacity}`);
+  }
 }}
 
 // Export the Truck class as the default export
