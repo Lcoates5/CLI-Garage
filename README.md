@@ -19,7 +19,7 @@
   This application is using the npm package inquire so be sure to install node package manager as well as the inquire package before running this application.
 
   ## Usage
-  To begin using this application open up your  integrated terminal and enter "npm run start" after that you will choose your vehicle, either by creating a new one or selecting a previously entered vehicle. At this point you can now choose what you would like to do with your vehicle including, start, stop, turn left and right, accelerate 5 mph and Decelerate 5 MPH, tow, wheelie, or stop vehicle. You can also select another vehicle or exit entirely. The options are almost limitless. 
+  To begin using this application open up your  integrated terminal and enter "npm start" after that you will choose your vehicle, either by creating a new one or selecting a previously entered vehicle. At this point you can now choose what you would like to do with your vehicle including, start, stop, turn left and right, accelerate 5 mph and Decelerate 5 MPH, tow, wheelie, or stop vehicle. You can also select another vehicle or exit entirely. The options are almost limitless. 
 
   ## License
   MIT
