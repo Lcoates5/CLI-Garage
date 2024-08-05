@@ -284,7 +284,7 @@ class Cli {
   }
 
   // method to find a vehicle to tow
-  // TODO: add a parameter to accept a truck object
+  // TODO: add a parameter to accept a truck object X
   findVehicleToTow(truck: Truck): void {
     inquirer
       .prompt([
@@ -301,21 +301,31 @@ class Cli {
         },
       ])
       .then((answers) => {
-        // TODO: check if the selected vehicle is the truck
-        if (answers.vehicleToTow instanceof Truck) {
-          console.log('A truck cannot tow itself');
-          this.performActions();
-        }
-        else {
-          // find the selected truck
-          for (let i = 0; i < this.vehicles.length; i++) {
-            if (this.vehicles[i].vin === this.selectedVehicleVin) {
-              // tow the selected vehicle
-              this.vehicles[i].tow(answers.vehicleToTow);
-            }
-          }
-          this.performActions();
-        }
+       // TODO: check if the selected vehicle is the truck X
+       const vehicleToTow = answers.vehicleToTow as Truck | Motorbike | Car;
+       if (answers.vehicleToTow instanceof Truck) {
+         console.log('A truck cannot tow itself');
+         this.performActions();
+         return; 
+       }
+       else {
+         // find the selected truck
+         const selectedTruck = this.vehicles.find(vehicle => vehicle.vin === this.selectedVehicleVin);
+
+         for (let i = 0; i < this.vehicles.length; i++) {
+           if (this.vehicles[i].vin === this.selectedVehicleVin) {
+             // tow the selected vehicle
+             if (selectedTruck instanceof Truck) {
+               // Tow the selected vehicle
+               selectedTruck.tow(vehicleToTow as Truck);
+             } else {
+               console.log('Selected vehicle is not a truck');
+             }
+
+             this.performActions();
+           }
+         }
+       }
         
         // TODO: if it is, log that the truck cannot tow itself then perform actions on the truck to allow the user to select another action
         // TODO: if it is not, tow the selected vehicle then perform actions on the truck to allow the user to select another action
@@ -330,16 +340,18 @@ class Cli {
           type: 'list',
           name: 'action',
           message: 'Select an action',
-          // TODO: add options to tow and wheelie
+          // TODO: add options to tow and wheelie X
           choices: [
             'Print details',
             'Start vehicle',
             'Accelerate 5 MPH',
             'Decelerate 5 MPH',
+            'wheelie',
             'Stop vehicle',
             'Turn right',
             'Turn left',
             'Reverse',
+            'Tow',
             'Select or create another vehicle',
             'Exit',
           ],
@@ -406,6 +418,28 @@ class Cli {
         }
         // TODO: add statements to perform the tow action only if the selected vehicle is a truck. Call the findVehicleToTow method to find a vehicle to tow and pass the selected truck as an argument. After calling the findVehicleToTow method, you will need to return to avoid instantly calling the performActions method again since findVehicleToTow is asynchronous.
         // TODO: add statements to perform the wheelie action only if the selected vehicle is a motorbike
+        else if (answers.action === 'Tow') {
+          for (let i = 0; i < this.vehicles.length; i++) {
+            if (this.vehicles[i].vin === this.selectedVehicleVin) {
+              if (this.vehicles[i] instanceof Truck) {
+                this.findVehicleToTow(this.vehicles[i] as Truck);
+                return;
+              } else {
+                console.log('Only trucks can tow');
+              }
+            }
+          }
+        } else if (answers.action === 'wheelie') {
+          for (let i = 0; i < this.vehicles.length; i++) {
+            if (this.vehicles[i].vin === this.selectedVehicleVin) {
+              if (this.vehicles[i] instanceof Motorbike) {
+                console.log('Performing a wheelie');
+              } else {
+                console.log('Only motorbikes can perform a wheelie');
+              }
+            }
+          }
+        }
         else if (answers.action === 'Select or create another vehicle') {
           // start the cli to return to the initial prompt if the user wants to select or create another vehicle
           this.startCli();

@@ -50,7 +50,7 @@ class Truck extends Vehicle implements Driveable, AbleToTow {
   this.towingCapacity = towingCapacity;
 }
    // Implement the tow method from the AbleToTow interface
-   tow(vehicle: Truck | Motorbike | Car): void {
+   tow(vehicle: Truck): void {
     // TODO: Get the make and model of the vehicle if it exists
     const make = vehicle.make;
     const model = vehicle.model;
@@ -63,6 +63,8 @@ class Truck extends Vehicle implements Driveable, AbleToTow {
       console.log(`Vehicle ${make} ${model} is too heavy to be towed`);
     }
   }
+
+
   
   // TODO: The method should call the printDetails method of the parent class
   // TODO: The method should log the details of the Truck
