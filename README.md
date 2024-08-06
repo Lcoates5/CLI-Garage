@@ -20,7 +20,14 @@
 
   ## Usage
   To begin using this application open up your  integrated terminal and enter "npm start" after that you will choose your vehicle, either by creating a new one or selecting a previously entered vehicle. At this point you can now choose what you would like to do with your vehicle including, start, stop, turn left and right, accelerate 5 mph and Decelerate 5 MPH, tow, wheelie, or stop vehicle. You can also select another vehicle or exit entirely. The options are almost limitless. 
+
+
 ![Example of npm start](<Images/Screenshot 2024-08-05 at 5.14.31 PM.png>)
+
+
+  For an example of how to use this application you can watch an example video on youtube here https://www.youtube.com/watch?v=tlj5rVhD_f8
+
+
 ![Example of selecting a vehicle](<Images/Screenshot 2024-08-05 at 5.15.37 PM.png>)
   ## License
   MIT
